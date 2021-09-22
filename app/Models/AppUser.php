@@ -10,7 +10,10 @@ class AppUser extends CoreModel
 
     // PROPRIETES 
 
-
+    private $email;
+    private $name;
+    private $password;
+    private $role;
 
 
     // METHODES 
@@ -26,34 +29,7 @@ class AppUser extends CoreModel
      */
     public function insert()
     {
-        // se connecter à la BDD
-        $pdo = Database::getPDO();  
-        
-        // écriture de la requête 
-        $sql = "
-        INSERT INTO `teacher` (firstname, lastname, job, status)
-        VALUES (:firstname, :lastname, :job, :status)
-        ";
-
-        // préparation de la requête 
-        $preparation = $pdo->prepare($sql);
-
-        // execution de la requête
-        $inserted = $preparation->execute([
-            ":firstname" => $this->firstname,
-            ":lastname" => $this->lastname,
-            ":job" => $this->job, 
-            ":status" => $this->status, 
-        ]);
-
-        if($inserted){
-            $this->id = $pdo->lastInsertId();
-            return true;
-
-        } else {
-            return false; 
-        }
-    
+        //bonus
     }
 
     // -----------------------------------------------
@@ -72,12 +48,11 @@ class AppUser extends CoreModel
     static public function findAll()
     {
         $pdo = Database::getPDO();
-        $sql = 'SELECT * FROM `teacher`';
+        $sql = 'SELECT * FROM `app_user`';
         $pdoStatement = $pdo->query($sql);
-        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\Models\Teacher');
-        
-        return $results;
+        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\Models\AppUser');
 
+        return $results;
     }
 
     // -----------------------------------------------
@@ -100,7 +75,83 @@ class AppUser extends CoreModel
 
     // GETTER AND SETTER 
 
+    /**
+     * Get the value of email
+     */ 
+    public function getEmail()
+    {
+        return $this->email;
+    }
 
+    /**
+     * Set the value of email
+     *
+     * @return  self
+     */ 
+    public function setEmail($email)
+    {
+        $this->email = $email;
 
-    
+        return $this;
+    }
+
+    /**
+     * Get the value of name
+     */ 
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @return  self
+     */ 
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of password
+     */ 
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @return  self
+     */ 
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of role
+     */ 
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set the value of role
+     *
+     * @return  self
+     */ 
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
 }
