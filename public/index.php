@@ -52,6 +52,15 @@ $router->map(
 
 // route login en GET et POST
 
+$router->map(
+    'GET',
+    '/signin',
+    [
+        'method' => 'signin',
+        'controller' => '\App\Controllers\MainController'
+    ],
+    'main-connexion'
+);
 
 // TEACHERS
 
@@ -73,6 +82,37 @@ $router->map(
         'controller' => '\App\Controllers\TeacherController'
     ],
     'teacher-list'
+);
+
+// -----------------------------------------------
+// CR[U]D
+// -----------------------------------------------
+
+// -----------------------------------------------
+// CRU[D]
+// -----------------------------------------------
+
+
+// STUDENT
+
+// -----------------------------------------------
+// [C]RUD
+// -----------------------------------------------
+
+// -----------------------------------------------
+// C[R]UD
+// -----------------------------------------------
+
+// route pour voir la liste des profs
+
+$router->map(
+    'GET',
+    '/students',
+    [
+        'method' => 'studentsList',
+        'controller' => '\App\Controllers\StudentController'
+    ],
+    'student-list'
 );
 
 // -----------------------------------------------

@@ -12,9 +12,6 @@ class Student extends CoreModel
 
     private $firstname;
     private $lastname;
-    private $job;
-
-
 
     // METHODES
 
@@ -34,8 +31,8 @@ class Student extends CoreModel
         
         // écriture de la requête
         $sql = "
-        INSERT INTO `teacher` (firstname, lastname, job, status)
-        VALUES (:firstname, :lastname, :job, :status)
+        INSERT INTO `student` (firstname, lastname, status)
+        VALUES (:firstname, :lastname, :status)
         ";
 
         // préparation de la requête
@@ -45,7 +42,6 @@ class Student extends CoreModel
         $inserted = $preparation->execute([
             ":firstname" => $this->firstname,
             ":lastname" => $this->lastname,
-            ":job" => $this->job,
             ":status" => $this->status,
         ]);
 
@@ -73,7 +69,7 @@ class Student extends CoreModel
     public static function findAll()
     {
         $pdo = Database::getPDO();
-        $sql = 'SELECT * FROM `teacher`';
+        $sql = 'SELECT * FROM `student`';
         $pdoStatement = $pdo->query($sql);
         $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\Models\Teacher');
         
@@ -100,4 +96,44 @@ class Student extends CoreModel
 
     // GETTER AND SETTER
     
+
+    /**
+     * Get the value of firstname
+     */ 
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * Set the value of firstname
+     *
+     * @return  self
+     */ 
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of lastname
+     */ 
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * Set the value of lastname
+     *
+     * @return  self
+     */ 
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
 }
