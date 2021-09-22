@@ -12,11 +12,15 @@
         </tr>
     </thead>
     <tbody>
+
+    <?php foreach ($teachers as $teacher) : ?>
+
         <tr>
-            <th scope="row">1</th>
-            <td>Prénom</td>
-            <td>Prof</td>
-            <td>Formateur PHP/MySQL</td>
+
+            <th scope="row"><?=$teacher->getID()?></th>
+            <td><?=$teacher->getFirstname()?></td>
+            <td><?=$teacher->getLastname()?></td>
+            <td><?=$teacher->getJob()?></td>
             <td class="text-right">
                 <a href="edit.html" class="btn btn-sm btn-warning">
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -31,47 +35,12 @@
                     </div>
                 </div>
             </td>
+
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Prénom2</td>
-            <td>Prof2</td>
-            <td>Formateur PHP/MySQL</td>
-            <td class="text-right">
-                <a href="edit.html" class="btn btn-sm btn-warning">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                </a>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-danger dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#" data-toggle="dropdown">Oups !</a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">5</th>
-            <td>sgsg</td>
-            <td>fsgfsg</td>
-            <td>sg</td>
-            <td class="text-right">
-                <a href="edit.html" class="btn btn-sm btn-warning">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                </a>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-danger dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#" data-toggle="dropdown">Oups !</a>
-                    </div>
-                </div>
-            </td>
-        </tr>
+
+        <?php endforeach ?>
+
+
     </tbody>
 </table>
 </div>

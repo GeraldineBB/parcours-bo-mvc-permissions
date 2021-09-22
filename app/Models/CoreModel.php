@@ -19,6 +19,11 @@ abstract class CoreModel {
      * @var string
      */
     protected $updated_at;
+    /**
+     * @var string
+     */
+    protected $status;
+
 
 
     /**
@@ -50,6 +55,18 @@ abstract class CoreModel {
     {
         return $this->updated_at;
     }
+
+    /**
+     * Get the value of status
+     *
+     * @return  string
+     */ 
+    public function getStatus() : string
+    {
+        return $this->status;
+    }
+
+
 
     /**
      * On déclare les méthodes abstraites : 
