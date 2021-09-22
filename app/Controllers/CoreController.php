@@ -221,8 +221,8 @@ class CoreController {
         // => il en va de même pour chaque élément du tableau
 
         // $viewData est disponible dans chaque fichier de vue
-        // require_once __DIR__.'/../views/layout/header.tpl.php';
+        require_once __DIR__.'/../views/layout/nav.tpl.php';
         require_once __DIR__.'/../views/'.$viewName.'.tpl.php';
-        // require_once __DIR__.'/../views/layout/footer.tpl.php';
+        require_once __DIR__.'/../views/layout/footer.tpl.php';
     }
 }

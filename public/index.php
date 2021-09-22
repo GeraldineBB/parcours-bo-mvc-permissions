@@ -1,16 +1,7 @@
 <?php
 
-// POINT D'ENTRÉE UNIQUE : 
-// FrontController
-
-// inclusion des dépendances via Composer
-// autoload.php permet de charger d'un coup toutes les dépendances installées avec composer
-// mais aussi d'activer le chargement automatique des classes (convention PSR-4)
 require_once '../vendor/autoload.php';
 
-//! NOUVELLE NOTION : Session
-//* On vient ouvrir notre session au début du script 
-//* Pour en profiter sur toutes nos pages / fichiers
 session_start();
 
 /* ------------
@@ -46,6 +37,9 @@ else {
 // 4. Le nom de la route : pour identifier la route, on va suivre une convention
 //      - "NomDuController-NomDeLaMéthode"
 //      - ainsi pour la route /, méthode "home" du MainController => "main-home"
+
+// MAIN ROUTES
+
 $router->map(
     'GET',
     '/',
@@ -55,6 +49,28 @@ $router->map(
     ],
     'main-home'
 );
+
+// route login en GET et POST
+
+
+// TEACHERS
+
+    // -----------------------------------------------
+    // [C]RUD
+    // -----------------------------------------------
+
+    // -----------------------------------------------
+    // C[R]UD
+    // -----------------------------------------------
+
+    // -----------------------------------------------
+    // CR[U]D
+    // -----------------------------------------------
+
+    // -----------------------------------------------
+    // CRU[D]
+    // -----------------------------------------------
+
 
 
 
