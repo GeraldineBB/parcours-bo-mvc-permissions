@@ -146,8 +146,25 @@ class Teacher extends CoreModel
 
     public function delete()
     {
-        // pas besoin
-    }
+        // Connexion à la BDD
+        $pdo = Database::getPDO();
+
+        // Écriture de la requête préparée
+        $sql = "
+            DELETE FROM `teacher`
+            WHERE id = :id
+        ";
+
+        // Préparation de la requête
+        $preparation = $pdo->prepare($sql);
+        $preparation->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+        // Execution de la requête préparée
+        $deleted = $preparation->execute();
+
+        // Retourne VRAI (true) si la BDD a bien été affectée
+        //          ↓↓↓ revient au même que les lignes 260-277
+        return $deleted;   }
 
     // GETTER AND SETTER 
 

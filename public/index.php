@@ -154,6 +154,17 @@ $router->map(
 // CRU[D]
 // -----------------------------------------------
 
+// Suppression d'un prof existant
+$router->map(
+    'GET',
+    '/teachers/[i:id]/delete',
+    [
+        'method' => 'delete',
+        'controller' => '\App\Controllers\TeacherController'
+    ],
+    'teacher-delete'
+);
+
 
 // STUDENT
 

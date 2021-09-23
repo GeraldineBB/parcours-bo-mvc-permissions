@@ -118,9 +118,9 @@ class TeacherController extends CoreController
     $teacher->setStatus($status);
 
     // On sauvegarde en DB
-    $updated = $teacher->save(); 
+    $updated = $teacher->save();
 
-    if( $updated ) {
+    if ($updated) {
 
       // tout c'est bien passé
 
@@ -129,12 +129,33 @@ class TeacherController extends CoreController
       exit;
       // un exit pour s'assurer que la suite du code ne soit pas exécutée une fois la redirection effectuée
 
-  } else {
+    } else {
 
       // flûte
       echo "erreur lors de l'édition de ce produit dans la BDD 😩";
-
+    }
   }
 
+  public function delete($teacherId)
+  {
+
+    // on rapatrie le Model correspondant
+    $teacher = Teacher::find($teacherId);
+
+    if ($teacher) {
+
+      // cette catégorie existe
+      $deleted = $teacher->delete();
+
+      if ($deleted) {
+        header('Location: /teachers'); // redirection
+        exit; // toujours arrêter l'execution du code actuel lors d'une redirection
+      } else {
+        echo "erreur lors de la suppression de cette catégorie dans la BDD 😩";
+      }
+    } else {
+      // cette catégorie n'existe pas
+      $this->show('error/err404');
+    }
   }
 }
