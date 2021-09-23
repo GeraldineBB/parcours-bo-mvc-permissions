@@ -16,7 +16,7 @@ class AppUserController extends CoreController
      *
      * @return void
      */
-    public function login()
+    public function signin()
     {
         $this->show('connexion/signin');
     }
@@ -45,30 +45,43 @@ class AppUserController extends CoreController
         } else {
 
             $goodPassword = false;
-
         }
 
-        if ( $appUser !== false AND $goodPassword === true ) {
+        if ($appUser !== false and $goodPassword === true) {
 
-            
+
             // on ajoute des informations dans notre tableau associatif $_SESSION
             $_SESSION['userId']     = $appUser->getId();
             $_SESSION['userObject'] = $appUser;
-      
+
             // on redirige vers la page d'accueil
             global $router;
             header('Location: ' . $router->generate('main-home'));
-            exit; 
-      
-          } else {
+            exit;
+        } else {
 
             // on redirige vers la connexion
             global $router;
-            header('Location: ' . $router->generate('signin'));
+            header('Location: ' . $router->generate('main-connexion'));
             exit;
-      
-          }
+        }
+    }
 
+    /**
+     * Déconnecte l'utilisateur en enlevant ses informations dans $_SESSION
+     * Puis redirige vers la page de login
+     */
+    public function logout()
+    {
+        // on vide le tableau de session
+        $_SESSION = [];
 
+        // on ferme la session
+        session_destroy();
+
+        // on le redirige vers le formulaire d'identification
+        global $router;
+        header('Location: ' . $router->generate('main-connexion'));
+        exit;
     }
 }

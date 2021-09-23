@@ -46,7 +46,7 @@
                         <a class="nav-link" href="./appuser/list.html">Utilisateurs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">Se déconnecter</a>
+                        <a class="nav-link" href="<?= $router->generate('logout') ?>">Se déconnecter</a>
                     </li>
                 </ul>
             </div>

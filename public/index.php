@@ -63,6 +63,19 @@ $router->map(
     'main-connexion-post'
 );
 
+// route pour se déconnecter
+
+
+$router->map(
+    'GET',
+    '/logout',
+    [
+        'method' => 'logout',
+        'controller' => '\App\Controllers\AppUserController'
+    ],
+    'logout'
+);
+
 // TEACHERS
 
 // -----------------------------------------------
