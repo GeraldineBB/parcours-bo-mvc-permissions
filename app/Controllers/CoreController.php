@@ -56,76 +56,6 @@ class CoreController {
 
 
 
-    //     // -----------------------------------
-    //     // TOKEN ANTI-CSRF
-    //     // -----------------------------------
-
-
-
-    //     // *****************************
-    //     // partie dédiée aux formulaires
-    //     // *****************************
-    //     // en gros, ici, on ne prend pas les méthodes POST (cc) dimitri 2021
-
-    //     // on définit la liste des routes nécessitant LA CRÉATION d'un token
-    //     $csrfTokenToCreate = [
-    //         // 'app-user-create', // le nom de ma route (création d'un nel user)
-
-    //     ];
-
-    //     if (in_array($routeName, $csrfTokenToCreate)) {
-
-    //         // si ma route actuelle est présente dans le tableau $csrfTokenToCreate
-    //         // On est sur une url qui affiche un formulaire
-    //         // Désormais, pour se prémunir d'une potentielle attaque de type CSRF
-    //         // Il faut générer un token, et pour ça on choisit la logique qu'on veut
-    //         // Ici on donne une valeur alphanumérique aléatoire
-    //         // https://www.php.net/manual/fr/function.random-bytes.php
-    //         // https://www.php.net/manual/fr/function.bin2hex
-    //         $_SESSION['token'] = bin2hex(random_bytes(32));
-    //     }
-
-    //     // ****************************************************************
-    //     // partie dédiée aux traitements des données issues des formulaires
-    //     // ****************************************************************
-        
-    //     // On définit la liste des routes nécessitant LA VÉRIFICATION d'un token
-    //     // Ce sont dont toutes les routes qui reçoivent un formulaire en POST
-    //     $csrfTokenToCheckInPost = [
-    //         // 'app-user-create-post',
-
-    //     ];
-
-    //     // Si la route actuelle nécessite la vérification d'un token anti-CSRF
-    //     if (in_array($routeName, $csrfTokenToCheckInPost)) {
-
-    //         // on récupère le token posté (en POST)
-    //         $token = filter_input(INPUT_POST, "token");
-
-    //         // on récupère le token en session
-    //         $sessionToken = isset($_SESSION['token']) ? $_SESSION['token'] : '';
-
-    //         // Si les deux tokens sont différents ou que le token du formulaire est vide
-    //         if ($token != $sessionToken || empty($token)) {
-
-    //             // alors on affiche une 403
-    //             http_response_code(403);
-    //             $this->show('error/err403');
-    //             exit;
-
-    //         } else {
-
-    //             // sinon, c'est que tout va bien
-    //             // on supprime le token en session
-    //             // ainsi, on ne pourra pas soumettre plusieurs fois le même formulaire, ni réutiliser ce token
-    //             unset($_SESSION['token']);
-
-    //             // et on laisse le code suivant s'executer
-
-    //         }
-
-
-    //     }
 
     // }
 
@@ -134,12 +64,6 @@ class CoreController {
      * - selon qu'il soit connecté, ou non
      * - selon son rôle
      * 
-     * on l'autorise à voir la page
-     * ou on le redirige, gentiment, ailleurs
-     * 
-     * Car on veut sécuriser notre BO,
-     * et, dans l'absolu, chaque page, chaque action (methode)
-     * doit être soumise à une vérification des droits
      * 
     */
     // public function checkAuthorization($roles=[]) {
@@ -182,7 +106,7 @@ class CoreController {
     //         // l'internaute n'est pas connecté à un compte
     //         // on le redirige vers la page de connexion
     //         global $router;
-    //         header('Location: ' . $router->generate('security-login'));
+    //         header('Location: ' . $router->generate('signin'));
     //         exit;
             
     //     }
@@ -199,6 +123,8 @@ class CoreController {
     protected function show(string $viewName, $viewData = []) {
         // On globalise $router car on ne sait pas faire mieux pour l'instant
         global $router;
+
+        dump($_SESSION); 
 
         // Comme $viewData est déclarée comme paramètre de la méthode show()
         // les vues y ont accès

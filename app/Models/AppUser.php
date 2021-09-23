@@ -41,18 +41,28 @@ class AppUser extends CoreModel
         // pas besoin 
     }
 
-    /**
-     * Récupérer la liste des profs en BDD
-     * 
-     */
     static public function findAll()
     {
-        $pdo = Database::getPDO();
-        $sql = 'SELECT * FROM `app_user`';
-        $pdoStatement = $pdo->query($sql);
-        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\Models\AppUser');
+        // pas besoin 
+    }
 
-        return $results;
+    /**
+     * Récupérer les emails des admin et users
+     * 
+     */
+    static public function findByEmail($email)
+    {
+        $pdo = Database::getPDO(); // connexion
+        $sql = '
+            SELECT *
+            FROM app_user
+            WHERE email = :email
+        ';
+        $pdoStatement = $pdo->prepare($sql); // prépare la requête
+        $pdoStatement->execute([':email' => $email]);
+        $result = $pdoStatement->fetchObject(self::class);
+    
+        return $result; // retourne un objet AppUser ou FALSE
     }
 
     // -----------------------------------------------
