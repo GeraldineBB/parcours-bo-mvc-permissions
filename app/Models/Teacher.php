@@ -61,9 +61,28 @@ class Teacher extends CoreModel
     // C[R]UD
     // -----------------------------------------------
 
-    static public function find($id)
+    /**
+     * Méthode permettant de récupérer un enregistrement de la table teacher en fonction d'un id donné
+     * 
+     * @param int $teacherId ID du prof
+     * @return Teacher
+     */
+    public static function find($teacherId)
     {
-        // pas besoin 
+        // se connecter à la BDD
+        $pdo = Database::getPDO();
+
+        // écrire notre requête
+        $sql = 'SELECT * FROM `teacher` WHERE `id` =' . $teacherId;
+
+        // exécuter notre requête
+        $pdoStatement = $pdo->query($sql);
+
+        // un seul résultat => fetchObject
+        $teacher = $pdoStatement->fetchObject('App\Models\Teacher');
+
+        // retourner le résultat
+        return $teacher;
     }
 
     /**
@@ -93,22 +112,25 @@ class Teacher extends CoreModel
         $sql = " UPDATE `teacher` 
         SET 
             firstname = :firstname, 
-            lastname = : lastname, 
+            lastname = :lastname, 
             job = :job, 
-            status = : status, 
+            status = :status, 
+            updated_at = NOW()
         WHERE id = :id
         ";
 
         // préparation de la requête 
         $preparation = $pdo->prepare($sql);
 
+        $preparation->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
+        $preparation->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
+        $preparation->bindValue(':job', $this->job, PDO::PARAM_STR);
+        $preparation->bindValue(':status', $this->status, PDO::PARAM_INT);
+        $preparation->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+
         // execution de la requête
-        $inserted = $preparation->execute([
-            ":firstname" => $this->firstname,
-            ":lastname" => $this->lastname,
-            ":job" => $this->job,
-            ":status" => $this->status,
-        ]);
+        $inserted = $preparation->execute();
 
         if ($inserted) {
             $this->id = $pdo->lastInsertId();

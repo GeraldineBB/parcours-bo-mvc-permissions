@@ -120,5 +120,21 @@ class TeacherController extends CoreController
     // On sauvegarde en DB
     $updated = $teacher->save(); 
 
+    if( $updated ) {
+
+      // tout c'est bien passé
+
+      // on redirige
+      header('Location: /teachers');
+      exit;
+      // un exit pour s'assurer que la suite du code ne soit pas exécutée une fois la redirection effectuée
+
+  } else {
+
+      // flûte
+      echo "erreur lors de l'édition de ce produit dans la BDD 😩";
+
+  }
+
   }
 }

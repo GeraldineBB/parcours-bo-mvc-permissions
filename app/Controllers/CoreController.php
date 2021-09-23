@@ -35,15 +35,14 @@ class CoreController
         // On définit la liste des permissions pour les routes nécessitant une connexion utilisateur
         $acl = [
             // 'main-connexion' =>              ['admin', 'user'],
-            // 'main-home' =>                   ['admin', 'user'],
-
-            // 'logout' =>                      ['admin', 'user'],
-            // 'student-add' =>                 ['admin', 'user'],
-            // 'student-addsave'  =>            ['admin', 'user'],
-            // 'student-list' =>                ['admin', 'user'],
-            // 'teacher-list' =>                ['admin', 'user'],
-            // 'teacher-add' =>                 ['admin'],
-            // 'teacher-addsave'  =>            ['admin'],
+            'main-home' =>                   ['admin', 'user'],
+            'logout' =>                      ['admin', 'user'],
+            'student-add' =>                 ['admin', 'user'],
+            'student-addsave'  =>            ['admin', 'user'],
+            'student-list' =>                ['admin', 'user'],
+            'teacher-list' =>                ['admin'],
+            'teacher-add' =>                 ['admin'],
+            'teacher-addsave'  =>            ['admin'],
         ];
 
         // On vérifie que la route demandée est dans les ACL
