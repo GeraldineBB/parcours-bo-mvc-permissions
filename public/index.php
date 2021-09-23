@@ -62,11 +62,46 @@ $router->map(
     'main-connexion'
 );
 
+$router->map(
+    'POST',
+    '/signin',
+    [
+        'method' => 'signinPost',
+        'controller' => '\App\Controllers\MainController'
+    ],
+    'main-connexion-post'
+);
+
 // TEACHERS
 
 // -----------------------------------------------
 // [C]RUD
 // -----------------------------------------------
+
+// route pour afficher le formulaire de création d'un prof GET
+
+$router->map(
+    'GET',
+    '/teachers/add',
+    [
+        'method' => 'add',
+        'controller' => '\App\Controllers\TeacherController'
+    ],
+    'teacher-add'
+);
+
+// route pour créer un prof en DB POST
+
+$router->map(
+    'POST',
+    '/teachers/add',
+    [
+        'method' => 'addSave',
+        'controller' => '\App\Controllers\TeacherController'
+    ],
+    'teacher-addsave'
+);
+
 
 // -----------------------------------------------
 // C[R]UD
@@ -98,6 +133,29 @@ $router->map(
 // -----------------------------------------------
 // [C]RUD
 // -----------------------------------------------
+
+$router->map(
+    'GET',
+    '/students/add',
+    [
+        'method' => 'add',
+        'controller' => '\App\Controllers\StudentController'
+    ],
+    'student-add'
+);
+
+// route pour créer un prof en DB POST
+
+$router->map(
+    'POST',
+    '/students/add',
+    [
+        'method' => 'addSave',
+        'controller' => '\App\Controllers\StudentController'
+    ],
+    'student-addsave'
+);
+
 
 // -----------------------------------------------
 // C[R]UD
