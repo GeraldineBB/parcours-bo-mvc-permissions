@@ -75,7 +75,7 @@ class StudentController extends CoreController
       header('Location: /students');
       exit;
     } else {
-      echo "erreur lors de l'ajout de cette nouvelle catégorie dans la BDD 😩";
+      echo "erreur lors de l'ajout de ce nouvel étudiant dans la BDD 😩";
     }
   }
 }
