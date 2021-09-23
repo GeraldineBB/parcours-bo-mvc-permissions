@@ -12,7 +12,7 @@ class Student extends CoreModel
 
     private $firstname;
     private $lastname;
-    private $teacher_id; 
+    private $teacher_id;
 
     // METHODES
 
@@ -29,7 +29,7 @@ class Student extends CoreModel
     {
         // se connecter à la BDD
         $pdo = Database::getPDO();
-        
+
         // écriture de la requête
         $sql = "
         INSERT INTO `student` (firstname, lastname, status, teacher_id)
@@ -59,9 +59,28 @@ class Student extends CoreModel
     // C[R]UD
     // -----------------------------------------------
 
-    public static function find($id)
+    /**
+     * Méthode permettant de récupérer un enregistrement de la table teacher en fonction d'un id donné
+     * 
+     * @param int $teacherId ID du prof
+     * @return Teacher
+     */
+    public static function find($teacherId)
     {
-        // pas besoin
+        // se connecter à la BDD
+        $pdo = Database::getPDO();
+
+        // écrire notre requête
+        $sql = 'SELECT * FROM `teacher` WHERE `id` =' . $teacherId;
+
+        // exécuter notre requête
+        $pdoStatement = $pdo->query($sql);
+
+        // un seul résultat => fetchObject
+        $teacher = $pdoStatement->fetchObject('App\Models\Teacher');
+
+        // retourner le résultat
+        return $teacher;
     }
 
     /**
@@ -74,7 +93,7 @@ class Student extends CoreModel
         $sql = 'SELECT * FROM `student`';
         $pdoStatement = $pdo->query($sql);
         $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\Models\Teacher');
-        
+
         return $results;
     }
 
@@ -97,11 +116,11 @@ class Student extends CoreModel
     }
 
     // GETTER AND SETTER
-    
+
 
     /**
      * Get the value of firstname
-     */ 
+     */
     public function getFirstname()
     {
         return $this->firstname;
@@ -111,7 +130,7 @@ class Student extends CoreModel
      * Set the value of firstname
      *
      * @return  self
-     */ 
+     */
     public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
@@ -121,7 +140,7 @@ class Student extends CoreModel
 
     /**
      * Get the value of lastname
-     */ 
+     */
     public function getLastname()
     {
         return $this->lastname;
@@ -131,7 +150,7 @@ class Student extends CoreModel
      * Set the value of lastname
      *
      * @return  self
-     */ 
+     */
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
@@ -141,7 +160,7 @@ class Student extends CoreModel
 
     /**
      * Get the value of teacher_id
-     */ 
+     */
     public function getTeacherId()
     {
         return $this->teacher_id;
@@ -151,7 +170,7 @@ class Student extends CoreModel
      * Set the value of teacher_id
      *
      * @return  self
-     */ 
+     */
     public function setTeacherId($teacher_id)
     {
         $this->teacher_id = $teacher_id;

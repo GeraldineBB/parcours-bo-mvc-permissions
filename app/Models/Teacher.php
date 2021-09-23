@@ -30,8 +30,8 @@ class Teacher extends CoreModel
     public function insert()
     {
         // se connecter à la BDD
-        $pdo = Database::getPDO();  
-        
+        $pdo = Database::getPDO();
+
         // écriture de la requête 
         $sql = "
         INSERT INTO `teacher` (firstname, lastname, job, status)
@@ -45,18 +45,16 @@ class Teacher extends CoreModel
         $inserted = $preparation->execute([
             ":firstname" => $this->firstname,
             ":lastname" => $this->lastname,
-            ":job" => $this->job, 
-            ":status" => $this->status, 
+            ":job" => $this->job,
+            ":status" => $this->status,
         ]);
 
-        if($inserted){
+        if ($inserted) {
             $this->id = $pdo->lastInsertId();
             return true;
-
         } else {
-            return false; 
+            return false;
         }
-    
     }
 
     // -----------------------------------------------
@@ -78,9 +76,8 @@ class Teacher extends CoreModel
         $sql = 'SELECT * FROM `teacher`';
         $pdoStatement = $pdo->query($sql);
         $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\Models\Teacher');
-        
-        return $results;
 
+        return $results;
     }
 
     // -----------------------------------------------
@@ -89,7 +86,36 @@ class Teacher extends CoreModel
 
     public function update()
     {
-        // pas besoin 
+        // se connecter à la BDD
+        $pdo = Database::getPDO();
+
+        // écriture de la requête 
+        $sql = " UPDATE `teacher` 
+        SET 
+            firstname = :firstname, 
+            lastname = : lastname, 
+            job = :job, 
+            status = : status, 
+        WHERE id = :id
+        ";
+
+        // préparation de la requête 
+        $preparation = $pdo->prepare($sql);
+
+        // execution de la requête
+        $inserted = $preparation->execute([
+            ":firstname" => $this->firstname,
+            ":lastname" => $this->lastname,
+            ":job" => $this->job,
+            ":status" => $this->status,
+        ]);
+
+        if ($inserted) {
+            $this->id = $pdo->lastInsertId();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // -----------------------------------------------
@@ -106,7 +132,7 @@ class Teacher extends CoreModel
 
     /**
      * Get the value of firstname
-     */ 
+     */
     public function getFirstname()
     {
         return $this->firstname;
@@ -116,7 +142,7 @@ class Teacher extends CoreModel
      * Set the value of firstname
      *
      * @return  self
-     */ 
+     */
     public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
@@ -126,7 +152,7 @@ class Teacher extends CoreModel
 
     /**
      * Get the value of lastname
-     */ 
+     */
     public function getLastname()
     {
         return $this->lastname;
@@ -136,7 +162,7 @@ class Teacher extends CoreModel
      * Set the value of lastname
      *
      * @return  self
-     */ 
+     */
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
@@ -146,7 +172,7 @@ class Teacher extends CoreModel
 
     /**
      * Get the value of job
-     */ 
+     */
     public function getJob()
     {
         return $this->job;
@@ -156,7 +182,7 @@ class Teacher extends CoreModel
      * Set the value of job
      *
      * @return  self
-     */ 
+     */
     public function setJob($job)
     {
         $this->job = $job;

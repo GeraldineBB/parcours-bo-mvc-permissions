@@ -127,6 +127,29 @@ $router->map(
 // CR[U]D
 // -----------------------------------------------
 
+// Affichage du formulaire de modification d'un prof existant
+$router->map(
+    'GET',
+    '/teachers/[i:id]',
+    [
+        'method' => 'edit',
+        'controller' => '\App\Controllers\TeacherController'
+    ],
+    'teacher-edit'
+);
+
+// Sauvegarde d'un prof existant
+$router->map(
+    'POST',
+    '/teachers/[i:id]',
+    [
+        'method' => 'editSave',
+        'controller' => '\App\Controllers\TeacherController'
+    ],
+    'teacher-editsave'
+);
+
+
 // -----------------------------------------------
 // CRU[D]
 // -----------------------------------------------
@@ -181,6 +204,27 @@ $router->map(
 // CR[U]D
 // -----------------------------------------------
 
+// Affichage du formulaire de modification d'un etuddiant existant
+$router->map(
+    'GET',
+    '/students/[i:id]',
+    [
+        'method' => 'edit',
+        'controller' => '\App\Controllers\StudentController'
+    ],
+    'student-edit'
+);
+
+// Sauvegarde d'un etuddiant existant
+$router->map(
+    'POST',
+    '/students/[i:id]',
+    [
+        'method' => 'editSave',
+        'controller' => '\App\Controllers\StudentController'
+    ],
+    'student-editsave'
+);
 // -----------------------------------------------
 // CRU[D]
 // -----------------------------------------------
