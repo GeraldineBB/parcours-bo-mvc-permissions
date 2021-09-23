@@ -12,6 +12,7 @@ class Student extends CoreModel
 
     private $firstname;
     private $lastname;
+    private $teacher_id; 
 
     // METHODES
 
@@ -31,8 +32,8 @@ class Student extends CoreModel
         
         // écriture de la requête
         $sql = "
-        INSERT INTO `student` (firstname, lastname, status)
-        VALUES (:firstname, :lastname, :status)
+        INSERT INTO `student` (firstname, lastname, status, teacher_id)
+        VALUES (:firstname, :lastname, :status, :teacher_id)
         ";
 
         // préparation de la requête
@@ -43,6 +44,7 @@ class Student extends CoreModel
             ":firstname" => $this->firstname,
             ":lastname" => $this->lastname,
             ":status" => $this->status,
+            ":teacher_id" => $this->teacher_id,
         ]);
 
         if ($inserted) {
@@ -133,6 +135,26 @@ class Student extends CoreModel
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of teacher_id
+     */ 
+    public function getTeacherId()
+    {
+        return $this->teacher_id;
+    }
+
+    /**
+     * Set the value of teacher_id
+     *
+     * @return  self
+     */ 
+    public function setTeacherId($teacher_id)
+    {
+        $this->teacher_id = $teacher_id;
 
         return $this;
     }

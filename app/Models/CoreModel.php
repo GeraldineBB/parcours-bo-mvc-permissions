@@ -66,6 +66,19 @@ abstract class CoreModel {
         return $this->status;
     }
 
+    /**
+     * Set the value of status
+     *
+     * @param  string  $status
+     *
+     * @return  self
+     */ 
+    public function setStatus(string $status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
 
 
     /**
@@ -108,5 +121,7 @@ abstract class CoreModel {
         }
 
      }
+
+
 
 }

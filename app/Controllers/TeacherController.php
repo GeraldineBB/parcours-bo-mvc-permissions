@@ -28,4 +28,15 @@ class TeacherController extends CoreController
  
     }
 
+     /**
+     * Formulaire d'ajout d'un nouveau prof
+     * 
+     */
+    public function add()
+    {
+      
+      $this->show('teacher/add');
+
+    }
+
 }
