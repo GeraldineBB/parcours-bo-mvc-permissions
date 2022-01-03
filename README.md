@@ -1,0 +1,1 @@
+# parcours-bo-mvc-permissions
